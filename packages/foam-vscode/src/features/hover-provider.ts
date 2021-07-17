@@ -4,12 +4,17 @@ import { FoamFeature } from '../types';
 import { mdDocSelector } from '../utils';
 import { toVsCodeRange } from '../utils/vsc-utils';
 import { ResourceLink } from 'foam-core';
+import { getFoamVsCodeConfig } from '../services/config';
 
 const feature: FoamFeature = {
   activate: async (
     context: vscode.ExtensionContext,
     foamPromise: Promise<Foam>
   ) => {
+    if (!getFoamVsCodeConfig('links.hover.enable')) {
+      return;
+    }
+
     const foam = await foamPromise;
 
     context.subscriptions.push(
@@ -33,6 +38,8 @@ export class HoverProvider implements vscode.HoverProvider {
     token: vscode.CancellationToken
   ): vscode.ProviderResult<vscode.Hover> {
     console.log('*** In HoverProvider ***'); //TO REMOVE
+    const conf = getFoamVsCodeConfig('links.navigation.enable');
+    console.log('---> CONF: ', conf);
 
     const startResource = this.parser.parse(document.uri, document.getText());
     console.log(startResource);
