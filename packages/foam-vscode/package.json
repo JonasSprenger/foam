@@ -29,7 +29,8 @@
     "onCommand:foam-vscode.show-graph",
     "onCommand:foam-vscode.create-new-template",
     "onCommand:foam-vscode.create-note-from-template",
-    "onCommand:foam-vscode.create-note-from-default-template"
+    "onCommand:foam-vscode.create-note-from-default-template",
+    "onCommand:foam-vscode.toto"
   ],
   "main": "./out/extension.js",
   "contributes": {
@@ -193,6 +194,10 @@
       {
         "command": "foam-vscode.create-new-template",
         "title": "Foam: Create New Template"
+      },
+      {
+        "command": "foam-vscode.toto",
+        "title": "Foam: Toto"
       }
     ],
     "configuration": {

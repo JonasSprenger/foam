@@ -12,6 +12,9 @@ import placeholders from './placeholders';
 import backlinks from './backlinks';
 import utilityCommands from './utility-commands';
 import documentLinkProvider from './document-link-provider';
+import referenceProvider from './reference-provider';
+import definitionProvider from './definition-provider';
+import totoCommand from './toto-command';
 import previewNavigation from './preview-navigation';
 import completionProvider from './link-completion';
 import linkDecorations from './document-decorator';
@@ -31,6 +34,9 @@ export const features: FoamFeature[] = [
   placeholders,
   backlinks,
   documentLinkProvider,
+  // referenceProvider,
+  definitionProvider,
+  totoCommand,
   utilityCommands,
   linkDecorations,
   previewNavigation,

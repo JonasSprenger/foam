@@ -35,7 +35,12 @@ export class LinkProvider implements vscode.DocumentLinkProvider {
   public provideDocumentLinks(
     document: vscode.TextDocument
   ): vscode.DocumentLink[] {
+
+    console.log('===>>> provideDocumentLinks')
+
     const resource = this.parser.parse(document.uri, document.getText());
+
+    let x = 1
 
     return resource.links.map(link => {
       const target = this.workspace.resolveLink(resource, link);
@@ -44,12 +49,16 @@ export class LinkProvider implements vscode.DocumentLinkProvider {
         toVsCodeRange(link.range),
         command
       );
+      x=x+1
       documentLink.tooltip = URI.isPlaceholder(target)
         ? `Create note for '${target.path}'`
-        : `Go to ${URI.toFsPath(target)}`;
+        : `Go titi ${x} ${URI.toFsPath(target)}`;
       return documentLink;
     });
   }
 }
 
 export default feature;
+
+
+//TODO: tester l'autre extension, voir comment la creation de fichier se passe avec un DefinitionProvider
