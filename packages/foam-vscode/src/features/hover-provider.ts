@@ -26,10 +26,6 @@ const feature: FoamFeature = {
   },
 };
 
-const hoverFixture = new vscode.Hover(
-  new vscode.MarkdownString('Toto')
-);
-
 export class HoverProvider implements vscode.HoverProvider {
   constructor(
     private workspace: FoamWorkspace,
@@ -41,13 +37,7 @@ export class HoverProvider implements vscode.HoverProvider {
     position: vscode.Position,
     token: vscode.CancellationToken
   ): vscode.ProviderResult<vscode.Hover> {
-    console.log('*** In HoverProvider ***'); //TO REMOVE
-    const conf = getFoamVsCodeConfig('links.navigation.enable');
-    console.log('---> CONF: ', conf);
-
     const startResource = this.parser.parse(document.uri, document.getText());
-    console.log(startResource);
-
     const targetLink: ResourceLink | undefined = startResource.links.find(
       link =>
         link.type === 'wikilink' &&
@@ -58,16 +48,12 @@ export class HoverProvider implements vscode.HoverProvider {
     );
 
     if (!targetLink) {
-      console.log('NO link'); //TO REMOVE
       return;
     }
-
-    console.log('Continue...');
 
     const uri = this.workspace.resolveLink(startResource, targetLink);
 
     if (URI.isPlaceholder(uri)) {
-      console.log('Is placeholder ', uri.path);
       return;
     }
 
