@@ -26,6 +26,10 @@ const feature: FoamFeature = {
   },
 };
 
+const hoverFixture = new vscode.Hover(
+  new vscode.MarkdownString('Toto')
+);
+
 export class HoverProvider implements vscode.HoverProvider {
   constructor(
     private workspace: FoamWorkspace,
@@ -58,7 +62,7 @@ export class HoverProvider implements vscode.HoverProvider {
       return;
     }
 
-    console.log('COntinue...');
+    console.log('Continue...');
 
     const uri = this.workspace.resolveLink(startResource, targetLink);
 
